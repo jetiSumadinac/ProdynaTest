@@ -9,23 +9,12 @@ namespace DataAcces.DataModels
 {
     public class NewsItems
     {
-        [Key]
-        [Required]
-        [Column("Id")]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Guid Id { get; set; }
-        
-        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
-
-        [Required]
         public int Category { get; set; }
-
-        [ForeignKey("Id")]
-        [Required]
-        public int Author { get; set; }
-
+        public int AuthorId { get; set; }
+        public Authors ItemAuthor { get; set; }
         public int CreatedTimestamp { get; set; }
     }
 }
