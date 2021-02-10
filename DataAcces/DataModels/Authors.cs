@@ -8,13 +8,8 @@ namespace DataAcces.DataModels
 {
     public class Authors
     {
-        [Key]
-        [Required]
-        [Column("Id")]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
-
-        [Required]
         public string Name { get; set; }
+        public NewsItems NewsItem { get; set; }
     }
 }
