@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataAcces.DataModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProdynaTest
 {
@@ -24,6 +26,11 @@ namespace ProdynaTest
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<ProdynaTestDbContext>(
+                options => options.UseSqlServer(
+                    Configuration.GetConnectionString("ProdynaTestMsSql")
+                )
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
