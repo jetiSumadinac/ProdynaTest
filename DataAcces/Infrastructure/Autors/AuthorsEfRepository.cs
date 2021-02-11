@@ -1,8 +1,10 @@
 ﻿using DataAcces.DataModels;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAcces.Infrastructure.Autors
@@ -29,14 +31,24 @@ namespace DataAcces.Infrastructure.Autors
             return await GetEntities().FirstOrDefaultAsync(query);
         }
 
-        public Task<int> InsertAsync(Authors data)
+        public async Task<int> InsertAsync(string name)
         {
-            throw new NotImplementedException();
+            int result;
+            var entity = new Authors();
+            entity.Name = name;
+
+            _context.Authors.Add(entity);
+            result = await _context.SaveChangesAsync();
+
+            return result;
         }
 
         protected override IQueryable<Authors> GetEntities()
         {
             return _context.Authors;
         }
+        #region private methods
+
+        #endregion
     }
 }
