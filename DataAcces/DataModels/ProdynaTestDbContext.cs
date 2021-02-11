@@ -19,10 +19,6 @@ namespace DataAcces.DataModels
                 entity.HasKey(m => m.Id);
                 entity.Property(m => m.Id).IsRequired();
                 entity.Property(m => m.Name).IsRequired();
-                
-                entity.HasOne<NewsItems>(m => m.NewsItem)
-                    .WithOne(a => a.ItemAuthor)
-                    .HasForeignKey<NewsItems>(fk => fk.AuthorId);
             });
 
             modelBuilder.Entity<NewsItems>(entity =>
@@ -32,6 +28,10 @@ namespace DataAcces.DataModels
                 entity.Property(m => m.CreatedTimestamp).IsRequired();
                 entity.Property(m => m.Category).IsRequired();
                 entity.Property(m => m.AuthorId).IsRequired();
+
+                entity.HasOne<Authors>(m => m.ItemAuthor)
+                    .WithMany(a => a.NewsItem)
+                    .HasForeignKey(fk => fk.AuthorId);
             });
         }
     }
