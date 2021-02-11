@@ -6,9 +6,9 @@ using System.Text;
 namespace DataAcces.Infrastructure.NewsItems
 {
     public interface INewsItemsEfRepository :
-        IInsertableAsync<int, DataModels.NewsItems>,
+        IInsertableAsync<Guid, DataModels.NewsItems>,
         ISearchableAsync<DataModels.NewsItems>,
-        IEditableAsync<int, DataModels.NewsItems>,
+        IEditableAsync<Guid, DataModels.NewsItems>,
         IRemovableAsync<int, Guid>
     {
     }
