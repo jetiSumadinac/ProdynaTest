@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using DataAcces.DataModels;
 using Microsoft.EntityFrameworkCore;
 using DataAcces.Infrastructure.Autors;
+using DataAcces.Infrastructure.NewsItems;
 
 namespace ProdynaTest
 {
@@ -32,7 +33,9 @@ namespace ProdynaTest
                     Configuration.GetConnectionString("ProdynaTestMsSql")
                 )
             );
+            //repository services
             services.AddScoped<IAuthorsEfRepository, AuthorsEfRepository>();
+            services.AddScoped<INewsItemsEfRepository, NewsItemsEfRepository>();
             
         }
 
