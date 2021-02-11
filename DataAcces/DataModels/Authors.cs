@@ -10,6 +10,6 @@ namespace DataAcces.DataModels
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public NewsItems NewsItem { get; set; }
+        public ICollection<NewsItems> NewsItem { get; set; }
     }
 }
