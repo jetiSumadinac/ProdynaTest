@@ -1,4 +1,4 @@
-﻿namespace ProdynaTest.Models
+﻿namespace ProdynaTest.Core.Models
 {
     public class AuthorModel
     {

@@ -1,7 +1,7 @@
-﻿using ProdynaTest.Helpers;
+﻿using ProdynaTest.Core.Helpers;
 using System;
 
-namespace ProdynaTest.Models
+namespace ProdynaTest.Core.Models
 {
     public class NewsItemsModel
     {
