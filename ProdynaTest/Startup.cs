@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAcces.DataModels;
 using Microsoft.EntityFrameworkCore;
+using DataAcces.Infrastructure.Autors;
 
 namespace ProdynaTest
 {
@@ -31,6 +32,8 @@ namespace ProdynaTest
                     Configuration.GetConnectionString("ProdynaTestMsSql")
                 )
             );
+            services.AddScoped<IAuthorsEfRepository, AuthorsEfRepository>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
