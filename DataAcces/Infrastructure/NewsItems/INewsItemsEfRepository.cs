@@ -9,7 +9,7 @@ namespace DataAcces.Infrastructure.NewsItems
         IInsertableAsync<Guid, DataModels.NewsItems>,
         ISearchableAsync<DataModels.NewsItems>,
         IEditableAsync<Guid, DataModels.NewsItems>,
-        IRemovableAsync<int, Guid>
+        IRemovableAsync<bool, Guid>
     {
     }
 }

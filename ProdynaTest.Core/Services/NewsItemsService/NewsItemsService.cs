@@ -1,18 +1,25 @@
-﻿using ProdynaTest.Core.Models;
+﻿using DataAcces.Infrastructure.NewsItems;
+using ProdynaTest.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ProdynaTest.Core.Services.NewsItemsService
 {
     public class NewsItemsService : INewsItemsService
     {
-        public bool DeleteNewsItem(Guid id)
+        private readonly INewsItemsEfRepository _newsItemsEfRepository;
+        public NewsItemsService(INewsItemsEfRepository newsItemsEfRepository)
         {
-            throw new NotImplementedException();
+            _newsItemsEfRepository = newsItemsEfRepository;
+        }
+        public async Task<bool> DeleteNewsItem(Guid id)
+        {
+            return await _newsItemsEfRepository.DeleteAsync(id);
         }
 
-        public Guid SaveNewsItem(NewsItemsModel data)
+        public Task<Guid> SaveNewsItem(NewsItemsModel data)
         {
             throw new NotImplementedException();
         }

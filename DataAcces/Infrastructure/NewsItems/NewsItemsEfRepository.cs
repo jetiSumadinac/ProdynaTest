@@ -19,7 +19,7 @@ namespace DataAcces.Infrastructure.NewsItems
             _context = prodynaTestDbContext;
             _authorsEfRepository = authorsEfRepository;
         }
-        public async Task<int> DeleteAsync(Guid data)
+        public async Task<bool> DeleteAsync(Guid data)
         {
             var entity = await _context.NewsItems.FirstOrDefaultAsync(e => e.Id == data);
             _context.NewsItems.Remove(entity);

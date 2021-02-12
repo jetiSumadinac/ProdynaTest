@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ProdynaTest.Core.Services.AuthorServices
 {
     public interface IAuthorService
     {
-        int SaveAuthor(AuthorModel data);
-        bool DeleteAuthor(int id);
+        Task<int> SaveAuthor(AuthorModel data);
+        Task<bool> DeleteAuthor(int id);
     }
 }

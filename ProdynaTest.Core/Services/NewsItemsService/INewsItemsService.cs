@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ProdynaTest.Core.Services.NewsItemsService
 {
     public interface INewsItemsService
     {
-        Guid SaveNewsItem(NewsItemsModel data);
-        bool DeleteNewsItem(Guid id);
+        Task<Guid> SaveNewsItem(NewsItemsModel data);
+        Task<bool> DeleteNewsItem(Guid id);
     }
 }

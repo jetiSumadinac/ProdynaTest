@@ -1,18 +1,25 @@
-﻿using ProdynaTest.Core.Models;
+﻿using DataAcces.Infrastructure.Autors;
+using ProdynaTest.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ProdynaTest.Core.Services.AuthorServices
 {
     public class AuthorService : IAuthorService
     {
-        public bool DeleteAuthor(int id)
+        private readonly IAuthorsEfRepository _authorEfRepository;
+        public AuthorService(IAuthorsEfRepository authorsEfRepository)
         {
-            throw new NotImplementedException();
+            _authorEfRepository = authorsEfRepository;
+        }
+        public async Task<bool> DeleteAuthor(int id)
+        {
+            return await _authorEfRepository.DeleteAsync(id);
         }
 
-        public int SaveAuthor(AuthorModel data)
+        public async Task<int> SaveAuthor(AuthorModel data)
         {
             throw new NotImplementedException();
         }
