@@ -23,12 +23,8 @@ namespace ProdynaTest.Core.Services.NewsItemsService
         public async Task<IEnumerable<NewsItemsModel>> GetListAsync(Expression<Func<NewsItemsModel, bool>> query)
         {
             var result = new List<NewsItemsModel>();
-
-            var entities = await _newsItemsEfRepository.GetListAsync(query);
-            foreach (var e in entities) {
-                result.Add(e);
-            }
-
+            result = (List<NewsItemsModel>)await _newsItemsEfRepository.GetListAsync(query) ;
+            
             return result;
         }
 

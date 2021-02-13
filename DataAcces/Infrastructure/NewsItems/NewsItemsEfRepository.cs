@@ -42,9 +42,9 @@ namespace DataAcces.Infrastructure.NewsItems
             return entity.Id;
         }
 
-        public async Task<DataModels.NewsItems> GetSingleAsync(Expression<Func<DataModels.NewsItems, bool>> query)
+        public async Task<NewsItemsModel> GetSingleAsync(Expression<Func<NewsItemsModel, bool>> query)
         {
-            return await GetEntities().FirstOrDefaultAsync(query);
+            return await GetEntities().Where(query).FirstOrDefaultAsync();
         }
         public async Task<IEnumerable<NewsItemsModel>> GetListAsync(Expression<Func<NewsItemsModel, bool>> query)
         {
