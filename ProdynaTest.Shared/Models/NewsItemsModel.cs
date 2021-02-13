@@ -1,7 +1,9 @@
-﻿using ProdynaTest.Core.Helpers;
+﻿using ProdynaTest.Shared.Helpers;
 using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace ProdynaTest.Core.Models
+namespace ProdynaTest.Shared.Models
 {
     public class NewsItemsModel
     {

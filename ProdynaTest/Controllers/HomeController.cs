@@ -21,11 +21,10 @@ namespace ProdynaTest.Controllers
             _newsItemsService = newsItemsService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-
-            var data = new HomeViewModel();
-            data.Name = "Penis";
+            var data = await _newsItemsService.GetListAsync();
+            
             return View(data);
         }
 

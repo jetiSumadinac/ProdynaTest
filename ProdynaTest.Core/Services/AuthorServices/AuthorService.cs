@@ -1,8 +1,6 @@
 ﻿using DataAcces.Infrastructure.Autors;
-using ProdynaTest.Core.Models;
+using ProdynaTest.Shared.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ProdynaTest.Core.Services.AuthorServices

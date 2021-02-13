@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAcces\DataAcces.csproj" />
+    <ProjectReference Include="..\ProdynaTest.Shared\ProdynaTest.Shared.csproj" />
   </ItemGroup>
 
 </Project>

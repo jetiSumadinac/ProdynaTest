@@ -1,7 +1,4 @@
-﻿using ProdynaTest.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ProdynaTest.Shared.Models;
 using System.Threading.Tasks;
 
 namespace ProdynaTest.Core.Services.AuthorServices

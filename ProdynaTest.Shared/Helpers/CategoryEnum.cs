@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProdynaTest.Core.Helpers
+namespace ProdynaTest.Shared.Helpers
 {
     public enum CategoryEnum
     {

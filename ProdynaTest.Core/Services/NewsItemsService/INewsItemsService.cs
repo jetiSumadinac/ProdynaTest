@@ -1,7 +1,7 @@
-﻿using ProdynaTest.Core.Models;
+﻿using ProdynaTest.Shared.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace ProdynaTest.Core.Services.NewsItemsService
@@ -10,5 +10,6 @@ namespace ProdynaTest.Core.Services.NewsItemsService
     {
         Task<Guid> SaveNewsItem(NewsItemsModel data);
         Task<bool> DeleteNewsItem(Guid id);
+        Task<IEnumerable<NewsItemsModel>> GetListAsync(Expression<Func<NewsItemsModel, bool>> query = null);
     }
 }

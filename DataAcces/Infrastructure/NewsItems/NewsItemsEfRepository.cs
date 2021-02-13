@@ -2,6 +2,7 @@
 using DataAcces.Infrastructure.Autors;
 using DataAcces.Interfaces.Generic;
 using Microsoft.EntityFrameworkCore;
+using ProdynaTest.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace DataAcces.Infrastructure.NewsItems
         {
             return await GetEntities().FirstOrDefaultAsync(query);
         }
-        public async Task<IEnumerable<DataModels.NewsItems>> GetListAsync(Expression<Func<DataModels.NewsItems, bool>> query)
+        public async Task<IEnumerable<NewsItemsModel>> GetListAsync(Expression<Func<NewsItemsModel, bool>> query)
         {
             return await GetEntities().Where(query).ToListAsync();
         }
