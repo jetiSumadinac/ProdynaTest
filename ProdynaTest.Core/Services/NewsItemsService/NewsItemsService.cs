@@ -20,10 +20,10 @@ namespace ProdynaTest.Core.Services.NewsItemsService
             return await _newsItemsEfRepository.DeleteAsync(id);
         }
 
-        public async Task<IEnumerable<NewsItemsModel>> GetListAsync(Expression<Func<NewsItemsModel, bool>> query)
+        public async Task<IEnumerable<NewsItemsModel>> GetListAsync(Expression<Func<NewsItemsModel, bool>> query = null)
         {
             var result = new List<NewsItemsModel>();
-            result = (List<NewsItemsModel>)await _newsItemsEfRepository.GetListAsync(query) ;
+            result = (List<NewsItemsModel>)await _newsItemsEfRepository.GetListAsync(query);
             
             return result;
         }

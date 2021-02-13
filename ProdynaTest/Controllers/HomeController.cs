@@ -25,7 +25,7 @@ namespace ProdynaTest.Controllers
         {
             var data = await _newsItemsService.GetListAsync();
             
-            return View(data);
+            return View();
         }
 
         public IActionResult Privacy()

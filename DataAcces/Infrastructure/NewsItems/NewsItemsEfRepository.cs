@@ -46,9 +46,11 @@ namespace DataAcces.Infrastructure.NewsItems
         {
             return await GetEntities().Where(query).FirstOrDefaultAsync();
         }
-        public async Task<IEnumerable<NewsItemsModel>> GetListAsync(Expression<Func<NewsItemsModel, bool>> query)
+        public async Task<IEnumerable<NewsItemsModel>> GetListAsync(Expression<Func<NewsItemsModel, bool>> query = null)
         {
-            return await GetEntities().Where(query).ToListAsync();
+            if (query != null) 
+                return await GetEntities().Where(query).ToListAsync();
+            return await GetEntities().ToListAsync();
         }
 
         public async Task<Guid> InsertAsync(DataModels.NewsItems data)
