@@ -20,7 +20,9 @@ namespace ProdynaTest.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var data = new HomeViewModel();
+            data.Name = "Penis";
+            return View(data);
         }
 
         public IActionResult Privacy()

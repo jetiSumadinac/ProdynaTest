@@ -21,10 +21,13 @@ namespace DataAcces.Infrastructure.NewsItems
         }
         public async Task<bool> DeleteAsync(Guid data)
         {
+            var result = false;
             var entity = await _context.NewsItems.FirstOrDefaultAsync(e => e.Id == data);
             _context.NewsItems.Remove(entity);
-
-            return await _context.SaveChangesAsync();
+            
+            result = (await _context.SaveChangesAsync()) > 0;
+            
+            return result;
         }
 
         public async Task<Guid> EditAsync(DataModels.NewsItems data)
