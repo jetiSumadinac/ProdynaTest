@@ -12,6 +12,8 @@ using DataAcces.DataModels;
 using Microsoft.EntityFrameworkCore;
 using DataAcces.Infrastructure.Autors;
 using DataAcces.Infrastructure.NewsItems;
+using ProdynaTest.Core.Services.AuthorServices;
+using ProdynaTest.Core.Services.NewsItemsService;
 
 namespace ProdynaTest
 {
@@ -36,6 +38,10 @@ namespace ProdynaTest
             //repository services
             services.AddScoped<IAuthorsEfRepository, AuthorsEfRepository>();
             services.AddScoped<INewsItemsEfRepository, NewsItemsEfRepository>();
+
+            //core services
+            services.AddScoped<IAuthorService, AuthorService>();
+            services.AddScoped<INewsItemsService, NewsItemsService>();
             
         }
 
