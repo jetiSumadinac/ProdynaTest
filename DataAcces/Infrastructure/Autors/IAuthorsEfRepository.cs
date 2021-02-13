@@ -8,7 +8,7 @@ namespace DataAcces.Infrastructure.Autors
     public interface IAuthorsEfRepository : 
         ISearchableAsync<DataModels.Authors>,
         IInsertableAsync<int, string>, 
-        IRemovableAsync<int, int>
+        IRemovableAsync<bool, int>
     {
 
     }

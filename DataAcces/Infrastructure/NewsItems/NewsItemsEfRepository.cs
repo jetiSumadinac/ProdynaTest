@@ -1,6 +1,9 @@
 ﻿using DataAcces.DataModels;
 using DataAcces.Infrastructure.Autors;
+using DataAcces.Interfaces.Generic;
 using Microsoft.EntityFrameworkCore;
+using ProdynaTest.Shared.Helpers;
+using ProdynaTest.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace DataAcces.Infrastructure.NewsItems
 {
-    public class NewsItemsEfRepository : BaseRepository<DataModels.NewsItems>, INewsItemsEfRepository
+    public class NewsItemsEfRepository : BaseRepository<NewsItemsModel>, INewsItemsEfRepository
     {
         private readonly ProdynaTestDbContext _context;
         private readonly IAuthorsEfRepository _authorsEfRepository;
@@ -19,12 +22,15 @@ namespace DataAcces.Infrastructure.NewsItems
             _context = prodynaTestDbContext;
             _authorsEfRepository = authorsEfRepository;
         }
-        public async Task<int> DeleteAsync(Guid data)
+        public async Task<bool> DeleteAsync(Guid data)
         {
+            var result = false;
             var entity = await _context.NewsItems.FirstOrDefaultAsync(e => e.Id == data);
             _context.NewsItems.Remove(entity);
-
-            return await _context.SaveChangesAsync();
+            
+            result = (await _context.SaveChangesAsync()) > 0;
+            
+            return result;
         }
 
         public async Task<Guid> EditAsync(DataModels.NewsItems data)
@@ -36,9 +42,15 @@ namespace DataAcces.Infrastructure.NewsItems
             return entity.Id;
         }
 
-        public async Task<DataModels.NewsItems> GetSingleAsync(Expression<Func<DataModels.NewsItems, bool>> query)
+        public async Task<NewsItemsModel> GetSingleAsync(Expression<Func<NewsItemsModel, bool>> query)
         {
-            return await GetEntities().FirstOrDefaultAsync(query);
+            return await GetEntities().Where(query).FirstOrDefaultAsync();
+        }
+        public async Task<IEnumerable<NewsItemsModel>> GetListAsync(Expression<Func<NewsItemsModel, bool>> query = null)
+        {
+            if (query != null) 
+                return await GetEntities().Where(query).ToListAsync();
+            return await GetEntities().ToListAsync();
         }
 
         public async Task<Guid> InsertAsync(DataModels.NewsItems data)
@@ -55,11 +67,22 @@ namespace DataAcces.Infrastructure.NewsItems
             return entity.Id; //TODO: we might have an exception here because Guid is not generated yet
         }
 
-        protected override IQueryable<DataModels.NewsItems> GetEntities()
-        {
-            return _context.NewsItems;
-        }
         #region private methods
+        protected override IQueryable<NewsItemsModel> GetEntities()
+        {
+            return _context.NewsItems.AsQueryable() //TODO we should join Author table
+                .Select(e => new NewsItemsModel { 
+                    AuthorId = e.AuthorId,
+                    Category = (CategoryEnum)e.Category,
+                    CreatedTimestamp = e.CreatedTimestamp,
+                    Description = e.Description,
+                    Id = e.Id,
+                    Name = e.Name
+                }
+            );
+            
+        }
+
         private void populateEntity(out DataModels.NewsItems entity, DataModels.NewsItems data) {
             entity = new DataModels.NewsItems();
             entity.Category = data.Category;

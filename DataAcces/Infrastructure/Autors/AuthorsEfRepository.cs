@@ -16,14 +16,17 @@ namespace DataAcces.Infrastructure.Autors
         {
             _context = context;
         }
-        public async Task<int> DeleteAsync(int Id)
+        public async Task<bool> DeleteAsync(int Id)
         {
             //if(_context.) //TODO: examine if any NewsItem exists first
-
+            bool result = false;
             var data = await _context.Authors.FirstOrDefaultAsync(entity => entity.Id == Id);
             _context.Authors.Remove(data);
+
+            result = (await _context.SaveChangesAsync()) > 0;
+
+            return result;
             
-            return await _context.SaveChangesAsync();
         }
 
         public async Task<Authors> GetSingleAsync(Expression<Func<Authors, bool>> query)
