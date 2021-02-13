@@ -1,5 +1,6 @@
 ﻿using DataAcces.DataModels;
 using DataAcces.Infrastructure.Autors;
+using DataAcces.Interfaces.Generic;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,10 @@ namespace DataAcces.Infrastructure.NewsItems
         {
             return await GetEntities().FirstOrDefaultAsync(query);
         }
+        public async Task<IEnumerable<DataModels.NewsItems>> GetListAsync(Expression<Func<DataModels.NewsItems, bool>> query)
+        {
+            return await GetEntities().Where(query).ToListAsync();
+        }
 
         public async Task<Guid> InsertAsync(DataModels.NewsItems data)
         {
@@ -62,6 +67,7 @@ namespace DataAcces.Infrastructure.NewsItems
         {
             return _context.NewsItems;
         }
+
         #region private methods
         private void populateEntity(out DataModels.NewsItems entity, DataModels.NewsItems data) {
             entity = new DataModels.NewsItems();

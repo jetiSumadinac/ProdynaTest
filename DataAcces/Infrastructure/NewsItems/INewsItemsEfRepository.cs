@@ -8,6 +8,7 @@ namespace DataAcces.Infrastructure.NewsItems
     public interface INewsItemsEfRepository :
         IInsertableAsync<Guid, DataModels.NewsItems>,
         ISearchableAsync<DataModels.NewsItems>,
+        ISearchableListAsync<DataModels.NewsItems>,
         IEditableAsync<Guid, DataModels.NewsItems>,
         IRemovableAsync<bool, Guid>
     {

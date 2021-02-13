@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ProdynaTest.Core.Services.NewsItemsService;
 using ProdynaTest.Models;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,17 @@ namespace ProdynaTest.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly INewsItemsService _newsItemsService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, INewsItemsService newsItemsService)
         {
             _logger = logger;
+            _newsItemsService = newsItemsService;
         }
 
         public IActionResult Index()
         {
+
             var data = new HomeViewModel();
             data.Name = "Penis";
             return View(data);
