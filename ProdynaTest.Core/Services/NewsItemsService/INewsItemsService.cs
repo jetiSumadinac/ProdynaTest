@@ -1,6 +1,5 @@
 ﻿using ProdynaTest.Shared.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using ProdynaTest.Shared.ViewModels;

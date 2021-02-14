@@ -1,15 +1,14 @@
 ﻿using DataAcces.DataModels;
 using Microsoft.EntityFrameworkCore;
+using ProdynaTest.Shared.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAcces.Infrastructure.Autors
 {
-    public class AuthorsEfRepository : BaseRepository<DataModels.Authors>, IAuthorsEfRepository
+    public class AuthorsEfRepository : BaseRepository<AuthorModel>, IAuthorsEfRepository
     {
         private readonly ProdynaTestDbContext _context;
         public AuthorsEfRepository(ProdynaTestDbContext context)
@@ -29,9 +28,14 @@ namespace DataAcces.Infrastructure.Autors
             
         }
 
-        public async Task<Authors> GetSingleAsync(Expression<Func<Authors, bool>> query)
+        public async Task<AuthorModel> GetSingleAsync(Expression<Func<AuthorModel, bool>> query)
         {
-            return await GetEntities().FirstOrDefaultAsync(query);
+            var result = new AuthorModel();
+            var entity = await GetEntities().FirstOrDefaultAsync(query);
+            result.Id = entity.Id;
+            result.Name = entity.Name;
+            
+            return result;
         }
 
         public async Task<int> InsertAsync(string name)
@@ -46,9 +50,13 @@ namespace DataAcces.Infrastructure.Autors
             return result;
         }
 
-        protected override IQueryable<Authors> GetEntities()
+        protected override IQueryable<AuthorModel> GetEntities()
         {
-            return _context.Authors;
+            return _context.Authors.AsQueryable().Select(e => new AuthorModel
+            {
+                Id = e.Id,
+                Name = e.Name
+            });
         }
         #region private methods
 
