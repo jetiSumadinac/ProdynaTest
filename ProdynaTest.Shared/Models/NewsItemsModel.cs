@@ -12,6 +12,7 @@ namespace ProdynaTest.Shared.Models
         public string Description { get; set; }
         public CategoryEnum Category { get; set; }
         public int AuthorId { get; set; }
+        public string AuthorName { get; set; }
         public int CreatedTimestamp { get; set; }
     }
 }

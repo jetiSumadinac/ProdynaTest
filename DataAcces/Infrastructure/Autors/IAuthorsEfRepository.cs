@@ -1,12 +1,10 @@
 ﻿using DataAcces.Interfaces.Generic;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using ProdynaTest.Shared.Models;
 
 namespace DataAcces.Infrastructure.Autors
 {
     public interface IAuthorsEfRepository : 
-        ISearchableAsync<DataModels.Authors>,
+        ISearchableAsync<AuthorModel>,
         IInsertableAsync<int, string>, 
         IRemovableAsync<bool, int>
     {

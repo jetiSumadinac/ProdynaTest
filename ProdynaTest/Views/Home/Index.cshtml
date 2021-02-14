@@ -1,13 +1,21 @@
-﻿@model HomeViewModel
+﻿@model ProdynaTest.Shared.ViewModels.HomeViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Prodyna Test - Stefan VUkovic</h1>
+    <p></p>
        
 </div>
 <div>
-    
+    @foreach (var n in Model.NewsList) { 
+    <div>
+        <span>Name: @n.Name</span><br />
+        <span>Description: @n.Description</span><br />
+        <span>Timestamp: @n.CreatedTimestamp</span><br />
+        <span>Author: @n.AuthorName</span><br />
+    </div>
+    <br /><br /><br />
+    }
 </div>

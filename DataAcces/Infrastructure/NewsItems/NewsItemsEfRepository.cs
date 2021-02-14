@@ -33,10 +33,12 @@ namespace DataAcces.Infrastructure.NewsItems
             return result;
         }
 
-        public async Task<Guid> EditAsync(DataModels.NewsItems data)
+        public async Task<Guid> EditAsync(NewsItemsModel data)
         {
             var entity = await _context.NewsItems.FirstOrDefaultAsync(e => e.Id == data.Id);
-            entity = data;
+            entity.Category = (int)data.Category;
+            entity.Description = data.Description;
+            entity.Name = data.Name;
             await _context.SaveChangesAsync();
 
             return entity.Id;
@@ -53,7 +55,7 @@ namespace DataAcces.Infrastructure.NewsItems
             return await GetEntities().ToListAsync();
         }
 
-        public async Task<Guid> InsertAsync(DataModels.NewsItems data)
+        public async Task<Guid> InsertAsync(NewsItemsModel data)
         {
             //TODO: We should have an validation, for author and other stuff
             int result;
@@ -70,22 +72,25 @@ namespace DataAcces.Infrastructure.NewsItems
         #region private methods
         protected override IQueryable<NewsItemsModel> GetEntities()
         {
-            return _context.NewsItems.AsQueryable() //TODO we should join Author table
-                .Select(e => new NewsItemsModel { 
-                    AuthorId = e.AuthorId,
-                    Category = (CategoryEnum)e.Category,
-                    CreatedTimestamp = e.CreatedTimestamp,
-                    Description = e.Description,
-                    Id = e.Id,
-                    Name = e.Name
-                }
-            );
+            return _context.NewsItems.Join(
+                _context.Authors,
+                n => n.AuthorId,
+                a => a.Id,
+                (n, a) => new NewsItemsModel{ 
+                    Id = n.Id,
+                    AuthorId = n.AuthorId,
+                    Category = (CategoryEnum)n.Category,
+                    Description = n.Description,
+                    Name = n.Name,
+                    AuthorName = a.Name,
+                    CreatedTimestamp = n.CreatedTimestamp
+                });
             
         }
 
-        private void populateEntity(out DataModels.NewsItems entity, DataModels.NewsItems data) {
+        private void populateEntity(out DataModels.NewsItems entity, NewsItemsModel data) {
             entity = new DataModels.NewsItems();
-            entity.Category = data.Category;
+            entity.Category = (int)data.Category;
             entity.CreatedTimestamp = data.CreatedTimestamp;
             entity.Description = data.Description;
             entity.AuthorId = data.AuthorId;
