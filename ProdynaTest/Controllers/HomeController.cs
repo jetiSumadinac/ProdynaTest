@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Logging;
 using ProdynaTest.Core.Services.NewsItemsService;
 using ProdynaTest.Models;
+using ProdynaTest.Shared.Models;
+using ProdynaTest.Shared.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,9 +25,9 @@ namespace ProdynaTest.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var data = await _newsItemsService.GetListAsync();
-            
-            return View();
+            var data  = await _newsItemsService.GetNewsListAsync();
+
+            return View(data);
         }
 
         public IActionResult Privacy()

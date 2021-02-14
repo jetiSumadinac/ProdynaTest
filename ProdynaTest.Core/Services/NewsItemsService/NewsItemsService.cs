@@ -1,5 +1,6 @@
 ﻿using DataAcces.Infrastructure.NewsItems;
 using ProdynaTest.Shared.Models;
+using ProdynaTest.Shared.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -20,10 +21,11 @@ namespace ProdynaTest.Core.Services.NewsItemsService
             return await _newsItemsEfRepository.DeleteAsync(id);
         }
 
-        public async Task<IEnumerable<NewsItemsModel>> GetListAsync(Expression<Func<NewsItemsModel, bool>> query = null)
+        public async Task<HomeViewModel> GetNewsListAsync(Expression<Func<NewsItemsModel, bool>> query = null)
         {
-            var result = new List<NewsItemsModel>();
-            result = (List<NewsItemsModel>)await _newsItemsEfRepository.GetListAsync(query);
+            var result = new HomeViewModel();
+            result.NewsList = (List<NewsItemsModel>)await _newsItemsEfRepository.GetListAsync(query);
+
             
             return result;
         }

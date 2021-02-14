@@ -1,4 +1,4 @@
-﻿@model HomeViewModel
+﻿@model ProdynaTest.Shared.ViewModels.HomeViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -9,5 +9,12 @@
        
 </div>
 <div>
-    
+    @foreach (var n in Model.NewsList) { 
+    <div>
+        <span>Name: @n.Name</span><br/>
+        <span>Description: @n.Description</span><br/>
+        <span>Timestamp: @n.CreatedTimestamp</span><br/>
+    </div>
+    <br /><br /><br />
+    }
 </div>

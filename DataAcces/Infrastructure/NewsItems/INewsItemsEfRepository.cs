@@ -5,10 +5,10 @@ using System;
 namespace DataAcces.Infrastructure.NewsItems
 {
     public interface INewsItemsEfRepository :
-        IInsertableAsync<Guid, DataModels.NewsItems>,
+        IInsertableAsync<Guid, NewsItemsModel>,
         ISearchableAsync<NewsItemsModel>,
         ISearchableListAsync<NewsItemsModel>,
-        IEditableAsync<Guid, DataModels.NewsItems>,
+        IEditableAsync<Guid, NewsItemsModel>,
         IRemovableAsync<bool, Guid>
     {
     }
