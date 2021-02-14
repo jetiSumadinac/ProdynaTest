@@ -72,16 +72,19 @@ namespace DataAcces.Infrastructure.NewsItems
         #region private methods
         protected override IQueryable<NewsItemsModel> GetEntities()
         {
-            return _context.NewsItems.AsQueryable() //TODO we should join Author table
-                .Select(e => new NewsItemsModel { 
-                    AuthorId = e.AuthorId,
-                    Category = (CategoryEnum)e.Category,
-                    CreatedTimestamp = e.CreatedTimestamp,
-                    Description = e.Description,
-                    Id = e.Id,
-                    Name = e.Name
-                }
-            );
+            return _context.NewsItems.Join(
+                _context.Authors,
+                n => n.AuthorId,
+                a => a.Id,
+                (n, a) => new NewsItemsModel{ 
+                    Id = n.Id,
+                    AuthorId = n.AuthorId,
+                    Category = (CategoryEnum)n.Category,
+                    Description = n.Description,
+                    Name = n.Name,
+                    AuthorName = a.Name,
+                    CreatedTimestamp = n.CreatedTimestamp
+                });
             
         }
 
