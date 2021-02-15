@@ -1,4 +1,4 @@
-﻿@model ProdynaTest.Shared.ViewModels.InsertNewsItemViewModel
+﻿@model ProdynaTest.Shared.Models.NewsItemsModel
 @{
     ViewData["Title"] = "Insert News Item";
 }
@@ -13,9 +13,9 @@
     @Html.TextBoxFor(m => m.Description);<br /><br />
 
     <label>Author: </label><br />
-    @Html.ListBoxFor(m => m.Author, new SelectList (Model.Authors, "Value", "Text"));
+    @Html.TextBoxFor(m => m.AuthorId);
 
     <label>Choose Category:</label><br />
-    //@Html.DropDownListFor()<br /><br />
+    @Html.TextBoxFor(m=>m.Category)<br /><br />
     <button type="submit">Save</button>
 }

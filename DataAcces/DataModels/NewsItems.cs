@@ -10,6 +10,6 @@ namespace DataAcces.DataModels
         public int Category { get; set; }
         public int AuthorId { get; set; }
         public Authors ItemAuthor { get; set; }
-        public int CreatedTimestamp { get; set; }
+        public long CreatedTimestamp { get; set; }
     }
 }

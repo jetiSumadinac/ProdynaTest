@@ -46,17 +46,13 @@ namespace ProdynaTest.Controllers
             return View(new AuthorModel { Id = result});
         }
 
-        public async Task<IActionResult> InsertNews(InsertNewsItemViewModel data) {
-            if (string.IsNullOrEmpty(data.Name)) {
-                var authors = await _authorService.GetAuthorsListAsync();
-                data.Authors = authors;
+        public async Task<IActionResult> InsertNews(NewsItemsModel data) {
+            if (string.IsNullOrEmpty(data.Name)) 
+                return View();
 
-                return View(data);
-            }
+            var result = await _newsItemsService.SaveNewsItem(data);
 
-            //var result = await _newsItemsService.SaveNewsItem(data);
-
-            return View();
+            return View(result);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
