@@ -10,7 +10,7 @@
     @Html.TextBoxFor(m => m.Name);
     <button type="submit">Save</button>
 }
-@if (Model != null && Model.Id != null)
+@if (Model != null && Model.Id > 0)
 {
     <h3>Author inserted</h3>
 }
