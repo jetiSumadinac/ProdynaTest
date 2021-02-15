@@ -11,7 +11,6 @@ namespace ProdynaTest.Shared.ViewModels
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<CategoryEnum> Categories { get; set; }
         public CategoryEnum SelectedCategory { get; set; }
         public AuthorModel Author { get; set; }
         public List<AuthorModel> Authors { get; set; }

@@ -24,6 +24,9 @@ namespace DataAcces.Infrastructure.NewsItems
         }
         public async Task<bool> DeleteAsync(Guid data)
         {
+            if (!_context.NewsItems.Any(e => e.Id == data))
+                throw new Exception("Item doesn't exist");
+
             var result = false;
             var entity = await _context.NewsItems.FirstOrDefaultAsync(e => e.Id == data);
             _context.NewsItems.Remove(entity);
@@ -66,7 +69,7 @@ namespace DataAcces.Infrastructure.NewsItems
 
             await _context.SaveChangesAsync();
 
-            return entity.Id; //TODO: we might have an exception here because Guid is not generated yet
+            return entity.Id;
         }
 
         #region private methods
@@ -86,7 +89,6 @@ namespace DataAcces.Infrastructure.NewsItems
                     AuthorName = a.Name,
                     CreatedTimestamp = n.CreatedTimestamp
                 });
-
         }
 
         private void populateEntity(out DataModels.NewsItems entity, NewsItemsModel data)

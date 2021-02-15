@@ -18,7 +18,9 @@ namespace DataAcces.Infrastructure.Autors
         }
         public async Task<bool> DeleteAsync(int Id)
         {
-            //if(_context.) //TODO: examine if any NewsItem exists first
+            if (!_context.Authors.Any(e => e.Id == Id))
+                throw new Exception("Author doesn't exist");
+
             bool result = false;
             var data = await _context.Authors.FirstOrDefaultAsync(entity => entity.Id == Id);
             _context.Authors.Remove(data);
