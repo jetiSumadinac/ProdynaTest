@@ -17,9 +17,11 @@ namespace ProdynaTest.Core.Services.AuthorServices
             return await _authorEfRepository.DeleteAsync(id);
         }
 
-        public async Task<int> SaveAuthor(AuthorModel data)
+        public async Task<int> SaveAuthorAsync(AuthorModel data)
         {
-            throw new NotImplementedException();
+            var result = await _authorEfRepository.InsertAsync(data.Name);
+
+            return result;
         }
     }
 }

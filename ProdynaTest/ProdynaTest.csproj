@@ -20,4 +20,8 @@
     <ProjectReference Include="..\ProdynaTest.Shared\ProdynaTest.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Author\" />
+  </ItemGroup>
+
 </Project>

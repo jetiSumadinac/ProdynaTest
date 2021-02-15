@@ -5,7 +5,7 @@ namespace ProdynaTest.Core.Services.AuthorServices
 {
     public interface IAuthorService
     {
-        Task<int> SaveAuthor(AuthorModel data);
+        Task<int> SaveAuthorAsync(AuthorModel data);
         Task<bool> DeleteAuthor(int id);
     }
 }
