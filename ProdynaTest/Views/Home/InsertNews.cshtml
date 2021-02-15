@@ -12,10 +12,10 @@
     <label>Description: </label><br />
     @Html.TextBoxFor(m => m.Description);<br /><br />
 
-    <label>Author: </label><br />
-    @Html.TextBoxFor(m => m.AuthorId);
+    <label>Author (ID): </label><br />
+    @Html.TextBoxFor(m => m.AuthorId);<br />
 
-    <label>Choose Category:</label><br />
+    <label>Choose Category (ID):</label><br />
     @Html.TextBoxFor(m=>m.Category)<br /><br />
     <button type="submit">Save</button>
 }
