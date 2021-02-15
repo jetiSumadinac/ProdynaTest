@@ -40,14 +40,13 @@ namespace DataAcces.Infrastructure.Autors
 
         public async Task<int> InsertAsync(string name)
         {
-            int result;
             var entity = new Authors();
             entity.Name = name;
 
             _context.Authors.Add(entity);
-            result = await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
-            return result;
+            return entity.Id;
         }
 
         protected override IQueryable<AuthorModel> GetEntities()

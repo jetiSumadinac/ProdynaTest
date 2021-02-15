@@ -4,9 +4,13 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
 <p>Create the new Author</p>
-@using (Html.BeginForm("InsertAuthor", "Home")) { 
+@using (Html.BeginForm("InsertAuthor", "Home"))
+{
     @Html.TextBoxFor(m => m.Name);
     <button type="submit">Save</button>
+}
+@if (Model != null && Model.Id > 0)
+{
+    <h3>Author inserted</h3>
 }

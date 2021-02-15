@@ -12,12 +12,17 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DataAcces\DataAcces.csproj" />
     <ProjectReference Include="..\ProdynaTest.Core\ProdynaTest.Core.csproj" />
     <ProjectReference Include="..\ProdynaTest.Shared\ProdynaTest.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Author\" />
   </ItemGroup>
 
 </Project>
