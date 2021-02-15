@@ -1,6 +1,7 @@
 ﻿using DataAcces.Infrastructure.Autors;
 using ProdynaTest.Shared.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ProdynaTest.Core.Services.AuthorServices
@@ -12,9 +13,14 @@ namespace ProdynaTest.Core.Services.AuthorServices
         {
             _authorEfRepository = authorsEfRepository;
         }
-        public async Task<bool> DeleteAuthor(int id)
+        public async Task<bool> DeleteAuthorAsync(int id)
         {
             return await _authorEfRepository.DeleteAsync(id);
+        }
+
+        public async Task<List<AuthorModel>> GetAuthorsListAsync()
+        {
+            return (List<AuthorModel>)await _authorEfRepository.GetListAsync(); 
         }
 
         public async Task<int> SaveAuthorAsync(AuthorModel data)

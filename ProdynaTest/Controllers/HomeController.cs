@@ -37,12 +37,19 @@ namespace ProdynaTest.Controllers
         }
 
         public async Task<IActionResult> InsertAuthor(AuthorModel data) {
-            if (data.Name == null)//TODO shame on me
+            if (data.Name == null)//TODO: shame on me
                 return View();
-            
-            var res = await _authorService.SaveAuthorAsync(data);
+            var result = await _authorService.SaveAuthorAsync(data);
 
-            return View(new AuthorModel { Id = res});
+            return View(new AuthorModel { Id = result});
+        }
+
+        public async Task<IActionResult> InsertNews(NewsItemsModel data) {
+            if (string.IsNullOrEmpty(data.Name)) 
+                return View();
+            var result = await _newsItemsService.SaveNewsItem(data);
+
+            return View(result);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

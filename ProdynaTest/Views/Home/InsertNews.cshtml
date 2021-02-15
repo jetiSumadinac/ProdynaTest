@@ -1,7 +1,21 @@
-﻿
+﻿@model ProdynaTest.Shared.Models.NewsItemsModel
 @{
-    ViewData["Title"] = "InsertNews";
+    ViewData["Title"] = "Insert News Item";
 }
 
-<h1>InsertNews</h1>
+<h1>@ViewData["Title"]</h1>
+@using (Html.BeginForm("InsertNews", "Home"))
+{
+    <label>Name: </label><br/>
+    @Html.TextBoxFor(m => m.Name);<br /><br />
 
+    <label>Description: </label><br />
+    @Html.TextBoxFor(m => m.Description);<br /><br />
+
+    <label>Author: </label><br />
+    @Html.TextBoxFor(m => m.AuthorId);
+
+    <label>Choose Category:</label><br />
+    @Html.TextBoxFor(m=>m.Category)<br /><br />
+    <button type="submit">Save</button>
+}

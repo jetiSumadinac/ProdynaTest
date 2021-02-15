@@ -25,14 +25,15 @@ namespace ProdynaTest.Core.Services.NewsItemsService
         {
             var result = new HomeViewModel();
             result.NewsList = (List<NewsItemsModel>)await _newsItemsEfRepository.GetListAsync(query);
-
             
             return result;
         }
 
-        public Task<Guid> SaveNewsItem(NewsItemsModel data)
+        public async Task<Guid> SaveNewsItem(NewsItemsModel data)
         {
-            throw new NotImplementedException();
+            var result = await _newsItemsEfRepository.InsertAsync(data);
+            
+            return result;
         }
     }
 }
