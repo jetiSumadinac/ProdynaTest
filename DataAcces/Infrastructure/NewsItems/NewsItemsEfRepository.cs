@@ -90,6 +90,7 @@ namespace DataAcces.Infrastructure.NewsItems
 
         private void populateEntity(out DataModels.NewsItems entity, NewsItemsModel data) {
             entity = new DataModels.NewsItems();
+            entity.Id = Guid.NewGuid();
             entity.Category = (int)data.Category;
             entity.CreatedTimestamp = data.CreatedTimestamp;
             entity.Description = data.Description;
