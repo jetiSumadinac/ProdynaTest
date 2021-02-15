@@ -37,10 +37,12 @@ namespace ProdynaTest.Controllers
         }
 
         public async Task<IActionResult> InsertAuthor(AuthorModel data) {
-            bool result;
-            await _authorService.SaveAuthorAsync(data);
+            if (data.Name == null)//TODO shame on me
+                return View();
+            
+            var res = await _authorService.SaveAuthorAsync(data);
 
-            return View();
+            return View(new AuthorModel { Id = res});
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

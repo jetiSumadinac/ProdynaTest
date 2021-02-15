@@ -1,7 +1,16 @@
-﻿
+﻿@model ProdynaTest.Shared.Models.AuthorModel
 @{
-    ViewData["Title"] = "InsertAuthor";
+    ViewData["Title"] = "Insert Author";
 }
+<h1>@ViewData["Title"]</h1>
 
-<h1>Author saved</h1>
-
+<p>Create the new Author</p>
+@using (Html.BeginForm("InsertAuthor", "Home"))
+{
+    @Html.TextBoxFor(m => m.Name);
+    <button type="submit">Save</button>
+}
+@if (Model != null && Model.Id != null)
+{
+    <h3>Author inserted</h3>
+}
