@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ProdynaTest.Core.Services.AuthorServices;
 using ProdynaTest.Core.Services.NewsItemsService;
 using ProdynaTest.Models;
+using ProdynaTest.Shared.Models;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -11,11 +13,15 @@ namespace ProdynaTest.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly INewsItemsService _newsItemsService;
+        private readonly IAuthorService _authorService;
 
-        public HomeController(ILogger<HomeController> logger, INewsItemsService newsItemsService)
+        public HomeController(ILogger<HomeController> logger, 
+            INewsItemsService newsItemsService,
+            IAuthorService authorService)
         {
             _logger = logger;
             _newsItemsService = newsItemsService;
+            _authorService = authorService;
         }
 
         public async Task<IActionResult> Index()
@@ -27,6 +33,13 @@ namespace ProdynaTest.Controllers
 
         public IActionResult Privacy()
         {
+            return View();
+        }
+
+        public async Task<IActionResult> InsertAuthor(AuthorModel data) {
+            bool result;
+            await _authorService.SaveAuthor(data);
+
             return View();
         }
 

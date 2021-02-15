@@ -1,9 +1,12 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
+﻿@model ProdynaTest.Shared.Models.AuthorModel
+@{
+    ViewData["Title"] = "Insert Author";
 }
 <h1>@ViewData["Title"]</h1>
 
 <p>Use this page to detail your site's privacy policy.</p>
 <p>Create the new Author</p>
-<input type="text" name="AuthorName"/>
-<input type="button" text="Сачувај" name="submit"/>
+@using (Html.BeginForm("InsertAuthor", "Home")) { 
+    @Html.TextBoxFor(m => m.Name);
+    <button type="submit">Save</button>
+}
